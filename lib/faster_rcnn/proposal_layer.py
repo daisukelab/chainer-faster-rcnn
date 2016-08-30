@@ -14,7 +14,13 @@
 # -----------------------------------------------------------------------------
 
 from chainer.cuda import to_cpu
-from lib.cpu_nms import cpu_nms as nms
+try:
+    from lib.cpu_nms import cpu_nms as nms
+except:
+    try:
+        from cpu_nms import cpu_nms as nms
+    except:
+        raise
 from lib.faster_rcnn.bbox_transform import bbox_transform_inv
 from lib.faster_rcnn.bbox_transform import clip_boxes
 from lib.faster_rcnn.generate_anchors import generate_anchors
